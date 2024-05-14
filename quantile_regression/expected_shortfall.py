@@ -27,6 +27,9 @@ def loss(
     g2: Callable[[float], float] = g2,
     g2_antiderivative: Callable[[float], float] = g2_antiderivative,
 ):
+    """
+    Equation 2 of https://arxiv.org/abs/1507.00244
+    """
     indicator = x <= v
     loss_ = (
         (indicator - alpha) * (g1(v) - g1(x))
@@ -38,6 +41,9 @@ def loss(
 
 
 def var_es(x: np.ndarray, alpha: float):
+    """
+    Minimisation from https://arxiv.org/abs/1507.00244
+    """
     my_loss = lambda ve: loss(
         v=ve[0],
         e=ve[1],
